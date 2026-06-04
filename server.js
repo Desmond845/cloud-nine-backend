@@ -27,14 +27,11 @@ async function findBestVideo(songTitle, artistName) {
     const channel = video.author.name.toLowerCase();
     const artist  = artistName.toLowerCase();
     const song    = songTitle.toLowerCase();
-
-    // Position bonus — earlier results are usually more relevant
+  
     score += Math.max(0, 8 - index);
 
-    // Title contains song name
     if (title.includes(song)) score += 6;
 
-    // Channel matches artist (handles "lil peep" in "Lil Peep" channel)
     const artistWords = artist.split(' ');
     const channelMatchCount = artistWords.filter(w => 
       w.length > 2 && channel.includes(w)
@@ -49,7 +46,7 @@ async function findBestVideo(songTitle, artistName) {
     if (title.includes('official'))       score += 4;
     if (title.includes('audio'))          score += 3;
 
-    // Penalise covers and remixes unless song title mentions them
+    
     const isCover = title.includes('cover') || title.includes('remix');
     const wantsCover = song.includes('cover') || song.includes('remix');
     if (isCover && !wantsCover) score -= 8;
