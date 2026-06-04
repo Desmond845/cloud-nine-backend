@@ -3,7 +3,7 @@ import { spawn } from 'child_process';
 import yts from 'yt-search';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -110,4 +110,4 @@ app.get('/stream', (req, res) => {
   });
 });
 
-app.listen(PORT, () => console.log(`Cloud Nine running on :${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Cloud Nine running on :${PORT}`));
