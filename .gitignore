@@ -1,0 +1,5 @@
+node_modules/
+audio_cache/
+cloud-nine-backend/
+.env
+cookies.txt
